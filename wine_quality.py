@@ -47,7 +47,7 @@ plt.show()
 pp = sns.pairplot(wine[cols],
                   diag_kws=dict(shade=True), # "diag" adjusts/tunes the diagonal plots
                   diag_kind="kde",# use "kde" for diagonal plots
-                  kind="reg") # <== 😀 linear regression to the scatter plots
+                  kind="reg") # linear regression to the scatter plots
 
 fig = pp.fig
 fig.subplots_adjust(top=0.93, wspace=0.3)
@@ -60,7 +60,7 @@ plt.show()
 
 subset_df = wine[cols]
 
-ss = StandardScaler()
+ss = StandardScaler() # scaling of two data sets for them to be represented on shared axis
 scaled_df = ss.fit_transform(subset_df)
 scaled_df = pd.DataFrame(scaled_df, columns=cols)
 final_df = pd.concat([scaled_df, wine['wine_type']], axis=1)
