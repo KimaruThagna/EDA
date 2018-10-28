@@ -76,3 +76,47 @@ pc = pd.plotting.parallel_coordinates(final_df,
                           'wine_type',
                           color=('skyblue', 'firebrick'))
 plt.show()
+# stack bars side by side when doing a simple comparison in count
+fig = plt.figure(figsize=(10, 7))
+cp = sns.countplot(data=wine,
+                   x="quality",
+                   hue="wine_type",
+                   palette={"red": "#FF9999", "white": "#FFE888"})
+
+# using facetGrid- maps a pandas dataframe to a matplotlib obj
+
+fig = plt.figure(figsize=(10,8))
+title = fig.suptitle("Sulphates Content in Wine", fontsize=14)
+fig.subplots_adjust(top=0.93, wspace=0.3)
+
+ax = fig.add_subplot(1,1,1)
+ax.set_xlabel("Sulphates")
+ax.set_ylabel("Frequency")
+
+g = sns.FacetGrid(data=wine,
+                  hue='wine_type',
+                  palette={"red": "r", "white": "y"})
+
+g.map(sns.distplot, 'sulphates',
+      kde=True, bins=15, ax=ax)
+
+ax.legend(title='Wine Type')
+plt.show()
+plt.close(2)
+
+# violin plots(can substitute boxplots)
+
+f, (ax) = plt.subplots(1, 1, figsize=(12, 4))
+f.subtitle('Wine Quality - Sulphates Content', fontsize=14)
+sns.violinplot(data=wine,
+               x="quality",
+               y="sulphates",
+               ax=ax)
+# also box plots can be used here
+# sns.boxplot(data=wine,
+#             x="quality",
+#             y="sulphates",
+#             ax=ax)
+ax.set_xlabel("Wine Quality",size=12,alpha=0.8)
+ax.set_ylabel("Wine Sulphates",size=12,alpha=0.8)
+plt.show()
