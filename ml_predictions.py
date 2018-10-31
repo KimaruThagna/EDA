@@ -29,7 +29,8 @@ white_wine['quality_label'] = pd.Categorical(white_wine['quality_label'], catego
 # convert the classification label to a value for easier processing
 #Option 1 USING LABDA
 red_wine['wine_type'] = red_wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
-#Option 2
+#Option 2 using get dummies.
+wine_type=pd.get_dummies(red_wine['wine_type'],drop_first=False)
 
 # preview the count distribution
 print(red_wine['quality_label'].value_counts())
