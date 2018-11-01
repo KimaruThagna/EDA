@@ -28,10 +28,19 @@ white_wine['quality_label'] = pd.Categorical(white_wine['quality_label'], catego
 
 # convert the classification label to a value for easier processing
 #Option 1 USING LABDA
-red_wine['wine_type'] = red_wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
-#Option 2 using get dummies. This will can be used on the combined dataset or red and white wine
-wine_type=pd.get_dummies(red_wine['wine_type'],drop_first=False)
 
+#red_wine['wine_type'] = red_wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
+#Option 2 using get dummies. This will can be used on the combined dataset or red and white wine
+# option 3 One Hot Encoding
+#wine_type=pd.get_dummies(red_wine['wine_type'],drop_first=False)
 # preview the count distribution
 print(red_wine['quality_label'].value_counts())
 print(red_wine.head())
+# combine the datasets for easier processing
+wine=pd.concat([red_wine,white_wine],axis=0)
+wine['wine_type']=wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
+print(wine.tail())
+
+#perform some pre-processing on the quality and quality label columns
+# later will test which performs better
+# CONSIDER
