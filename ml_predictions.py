@@ -39,8 +39,29 @@ print(red_wine.head())
 # combine the datasets for easier processing
 wine=pd.concat([red_wine,white_wine],axis=0)
 wine['wine_type']=wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
-print(wine.tail())
+
 
 #perform some pre-processing on the quality and quality label columns
 # later will test which performs better
-# CONSIDER
+# CONSIDER Low-1 Medium 2 and High-3
+wine['quality_label']=wine['quality_label'].apply(lambda value: (1 if value =='low' else 2)  if value != 'high' else 3)
+print(wine.tail())
+
+# ML Implementation
+#wine.loc[:, wine.columns != 'wine_type'] Feature-set
+
+trainX, testX, trainy, testy = model_selection.train_test_split(wine.loc[:, wine.columns != 'wine_type'], wine['wine_type'], test_size=0.3,random_state=1)
+# Train, Test Split
+# make a naive prediction. This predicts all of the test data to be one value of the label
+# in this case, all the test data will be predicted to be 0 in the 1st round and 1 in round 2
+def naive_prediction(testX, value):
+	return [value for x in range(len(testX))]
+
+# evaluate skill of predicting each class value
+for value in [0, 1]:
+	# forecast
+	yhat = naive_prediction(testX, value)
+	# evaluate
+	score = accuracy_score(testy, yhat)
+	# summarize
+	print('Naive=%d score=%.3f' % (value, score))
