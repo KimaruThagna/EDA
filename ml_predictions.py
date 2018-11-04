@@ -32,9 +32,12 @@ white_wine['quality_label'] = pd.Categorical(white_wine['quality_label'], catego
 #Option 1 USING LABDA
 
 #red_wine['wine_type'] = red_wine['wine_type'].apply(lambda value: (1 if value =='red' else 0))
+
 #Option 2 using get dummies. This will can be used on the combined dataset or red and white wine
-# option 3 One Hot Encoding
 #wine_type=pd.get_dummies(red_wine['wine_type'],drop_first=False)
+
+# option 3 One Hot Encoding
+
 # preview the count distribution
 print(red_wine['quality_label'].value_counts())
 print(red_wine.head())
@@ -46,9 +49,11 @@ wine['wine_type']=wine['wine_type'].apply(lambda value: (1 if value =='red' else
 #perform some pre-processing on the quality and quality label columns
 # later will test which performs better
 # CONSIDER Low-1 Medium 2 and High-3
-wine['quality_label']=wine['quality_label'].apply(lambda value: (1 if value =='low' else 2)  if value != 'high' else 3)
-print(wine.tail())
+#wine['quality_label']=wine['quality_label'].apply(lambda value: (1 if value =='low' else 2)  if value != 'high' else 3)
 
+wine=wine.drop(['quality_label'],axis=1)
+print('cyccycyy ')
+print(wine.tail())
 # ML Implementation
 #wine.loc[:, wine.columns != 'wine_type'] Feature-set
 
