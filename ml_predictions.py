@@ -1,6 +1,7 @@
 import pandas as pd
 from pandas.plotting import scatter_matrix
 import seaborn as sns
+from confusion_matrix import plot_confusion_matrix as plt_cnf_matrix
 import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.metrics import classification_report
@@ -109,5 +110,9 @@ print('accuracy score',accuracy_score(testy, predictions))
 print('Confusion matrix from sklearn\n')
 print(confusion_matrix(testy, predictions))
 # custom confusion matrix
+plt.figure()
+plt_cnf_matrix(confusion_matrix(testy, predictions),classes=['white-wine','red-wine']
+			   ,title='Normalized confusion matrix',normalize=True)
+plt.show()
 print('SKLEARN CLASSIFICATION REPORT\n')
 print(classification_report(testy, predictions))
