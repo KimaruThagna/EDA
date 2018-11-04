@@ -103,6 +103,11 @@ plt.show()
 clf = SVC()
 clf.fit(trainX, trainy)
 predictions = clf.predict(testX)
-print(accuracy_score(testy, predictions))
+
+print('accuracy score',accuracy_score(testy, predictions))
+# from sklearn
+print('Confusion matrix from sklearn\n')
 print(confusion_matrix(testy, predictions))
+# custom confusion matrix
+print('SKLEARN CLASSIFICATION REPORT\n')
 print(classification_report(testy, predictions))
