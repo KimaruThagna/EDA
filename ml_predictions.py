@@ -1,5 +1,6 @@
 import pandas as pd
 from pandas.plotting import scatter_matrix
+import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.metrics import classification_report
@@ -65,3 +66,43 @@ for value in [0, 1]:
 	score = accuracy_score(testy, yhat)
 	# summarize
 	print('Naive=%d score=%.3f' % (value, score))
+
+# Test options and evaluation metric
+seed = 7
+scoring = 'accuracy'
+
+# Spot Check Algorithms
+models = []
+models.append(('LR', LogisticRegression()))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC()))
+# evaluate each model in turn
+results = []
+names = []
+for name, model in models:
+	kfold = model_selection.KFold(n_splits=10, random_state=seed)
+	cv_results = model_selection.cross_val_score(model, trainX, trainy, cv=kfold, scoring=scoring)
+	results.append(cv_results)
+	names.append(name)
+	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+	print(msg)
+
+# Compare Algorithms by accuracy measures during the 10-fold validation
+fig = plt.figure()
+fig.suptitle('Algorithm Comparison')
+ax = fig.add_subplot(111)
+#plt.boxplot(results)
+sns.violinplot(data=results,ax=ax)
+ax.set_xticklabels(names)
+plt.show()
+
+# Make predictions on validation dataset
+clf = SVC()
+clf.fit(trainX, trainy)
+predictions = clf.predict(testX)
+print(accuracy_score(testy, predictions))
+print(confusion_matrix(testy, predictions))
+print(classification_report(testy, predictions))
