@@ -1,5 +1,7 @@
 '''
 Used to evaluate the output of a classifier
+In this project, the component of importance is the plotting which is to be used
+in the wine dataset. Hence, the plotting of the confusion matrices of the iris dataset is irrelevant
 '''
 import itertools
 import numpy as np
@@ -60,15 +62,15 @@ def plot_confusion_matrix(cm, classes,
 # Compute confusion matrix
 cnf_matrix = confusion_matrix(y_test, y_pred)
 np.set_printoptions(precision=2)
-
-# Plot non-normalized confusion matrix
-plt.figure()
-plot_confusion_matrix(cnf_matrix, classes=class_names,
-                      title='Confusion matrix, without normalization')
-
-# Plot normalized confusion matrix
-plt.figure()
-plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
-                      title='Normalized confusion matrix')
-
-plt.show()
+#
+# # Plot non-normalized confusion matrix
+# plt.figure()
+# plot_confusion_matrix(cnf_matrix, classes=class_names,
+#                       title='Confusion matrix, without normalization')
+#
+# # Plot normalized confusion matrix
+# plt.figure()
+# plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
+#                       title='Normalized confusion matrix')
+#
+# plt.show()
