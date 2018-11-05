@@ -92,6 +92,7 @@ for name, model in models:
 	cv_results = model_selection.cross_val_score(model, trainX, trainy, cv=kfold, scoring=scoring)
 	results.append(cv_results)
 	names.append(name)
+
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
 
