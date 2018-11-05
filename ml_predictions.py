@@ -105,7 +105,7 @@ ax.set_xticklabels(names)
 plt.show()
 
 # Make predictions on validation dataset
-clf = SVC()
+clf = LinearDiscriminantAnalysis()
 clf.fit(trainX, trainy)
 predictions = clf.predict(testX)
 
