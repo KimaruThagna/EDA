@@ -5,8 +5,8 @@ import seaborn as sb
 from mpl_toolkits.mplot3d import Axes3D
 
 #Load datasets
-red_wine   = pd.read_csv('winequality-red.csv',   sep=';')
-white_wine = pd.read_csv('winequality-white.csv', sep=';')
+red_wine   = pd.read_csv('datasets/winequality-red.csv',   sep=';')
+white_wine = pd.read_csv('datasets/winequality-white.csv', sep=';')
 # view the dataset's first 5 items
 #print(red_wine.head())
 

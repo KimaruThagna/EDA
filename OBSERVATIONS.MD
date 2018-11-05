@@ -14,3 +14,11 @@ used to identify potential outliers.
 #ML PREDICTIONS SCRIPT
 Quality label had to be encoded into figures for the algorithms to work
 This label is insignificant since the quality column already exists and hence, not necessary to training
+
+As per my runnings, the best algorithm was LDA
+LR: 0.981526 (0.004636)
+LDA: 0.995821 (0.004765)
+KNN: 0.940178 (0.011804)
+CART: 0.984386 (0.005245)
+NB: 0.976030 (0.008592)
+SVM: 0.944137 (0.013777)

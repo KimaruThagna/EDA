@@ -15,8 +15,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 #Load datasets
-red_wine   = pd.read_csv('winequality-red.csv',   sep=';')
-white_wine = pd.read_csv('winequality-white.csv', sep=';')
+red_wine   = pd.read_csv('datasets/winequality-red.csv',   sep=';')
+white_wine = pd.read_csv('datasets/winequality-white.csv', sep=';')
 #create class
 red_wine['wine_type']='red'
 white_wine['wine_type']='white'
@@ -52,8 +52,7 @@ wine['wine_type']=wine['wine_type'].apply(lambda value: (1 if value =='red' else
 #wine['quality_label']=wine['quality_label'].apply(lambda value: (1 if value =='low' else 2)  if value != 'high' else 3)
 
 wine=wine.drop(['quality_label'],axis=1)
-print('cyccycyy ')
-print(wine.tail())
+
 # ML Implementation
 #wine.loc[:, wine.columns != 'wine_type'] Feature-set
 
